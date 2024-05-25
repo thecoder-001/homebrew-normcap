@@ -20,6 +20,11 @@ cask "normcap" do
 
   app "NormCap.app"
 
+  postflight do
+    system_command "xattr",
+                   args: ["-d", "com.apple.quarantine", "#{staged_path}/NormCap.app"]
+  end
+
   zap trash: [
     "~/Library/Preferences/com.normcap-test.settings.plist",
     "~/Library/Preferences/com.normcap-tests.settings.plist",
